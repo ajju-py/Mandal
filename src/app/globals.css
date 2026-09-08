@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-heading: 'Yatra One', 'Rozha One', serif;
+  --font-body: 'Baloo 2', 'Noto Sans Devanagari', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-festive-cream text-festive-charcoal font-body antialiased selection:bg-bhagwa-500 selection:text-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-wide;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFF8F0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #F98E4B;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6F00;
+}
+
+/* Festive accents & utilities */
+.bhagwa-gradient {
+  background: linear-gradient(135deg, #FF7A1A 0%, #EA580C 50%, #9E1B32 100%);
+}
+
+.bhagwa-text-gradient {
+  background: linear-gradient(135deg, #FF6F00 0%, #C2410C 60%, #800B22 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-glow {
+  box-shadow: 0 0 15px rgba(217, 119, 6, 0.25);
+}
+
+.bhagwa-border-glow {
+  box-shadow: 0 0 20px rgba(234, 88, 12, 0.2);
+}
+
+/* Subtle traditional decorative separator */
+.festival-divider {
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, #F98E4B 20%, #FF6F00 50%, #F98E4B 80%, transparent 100%);
+}
+
+/* Responsive iframe 16:9 container */
+.video-responsive-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.video-responsive-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
