@@ -1,8 +1,10 @@
 export interface TeamMember {
   id: string;
-  name: string;
+  name?: string;
+  names?: string[];
   role: string;
-  photo: string;
+  image: string;
+  photo?: string;
   isMemorial?: boolean;
   memorialNote?: string;
   badge?: string;
@@ -10,82 +12,94 @@ export interface TeamMember {
 
 export const leadershipTeam: TeamMember[] = [
   {
-    id: "kalyan-aute",
+    id: "01_kalyan_aute",
     name: "कल्याण औटे",
     role: "मंडळ ट्रस्ट अध्यक्ष",
-    photo: "/images/leadership/kalyan-aute.jpg",
+    image: "/images/people/leadership/01_kalyan_aute.jpg",
+    photo: "/images/people/leadership/01_kalyan_aute.jpg",
     badge: "ट्रस्ट अध्यक्ष",
   },
   {
-    id: "avinash-kulkarni",
+    id: "02_avinash_kulkarni",
     name: "अविनाश कुलकर्णी",
     role: "संस्थापक अध्यक्ष",
-    photo: "/images/leadership/avinash-kulkarni.jpg",
+    image: "/images/people/leadership/02_avinash_kulkarni.png",
+    photo: "/images/people/leadership/02_avinash_kulkarni.png",
     badge: "संस्थापक",
   },
   {
-    id: "manoj-kulkarni",
+    id: "03_manoj_kulkarni",
     name: "मनोज कुलकर्णी",
     role: "संस्थापक अध्यक्ष",
-    photo: "/images/leadership/manoj-kulkarni.jpg",
+    image: "/images/people/leadership/03_manoj_kulkarni.png",
+    photo: "/images/people/leadership/03_manoj_kulkarni.png",
     badge: "संस्थापक",
   },
   {
-    id: "vijay-tandale",
+    id: "04_vijay_tandale",
     name: "विजय तांदळे",
     role: "मंडळ सचिव",
-    photo: "/images/leadership/vijay-tandale.jpg",
+    image: "/images/people/leadership/04_vijay_tandale.png",
+    photo: "/images/people/leadership/04_vijay_tandale.png",
   },
   {
-    id: "chandrakant-salunke",
+    id: "05_chandrakant_salunke",
     name: "चंद्रकांत साळुंके",
     role: "मंडळ संघटक",
-    photo: "/images/leadership/chandrakant-salunke.jpg",
+    image: "/images/people/leadership/05_chandrakant_salunke.png",
+    photo: "/images/people/leadership/05_chandrakant_salunke.png",
   },
   {
-    id: "laxman-anna-thorat",
+    id: "06_laxman_anna_thorat",
     name: "कै. लक्ष्मण अण्णा थोरात",
     role: "प्रेरणा स्थान",
-    photo: "/images/leadership/laxman-anna-thorat.jpg",
+    image: "/images/people/leadership/06_laxman_anna_thorat.png",
+    photo: "/images/people/leadership/06_laxman_anna_thorat.png",
     isMemorial: true,
     memorialNote: "आदरणीय स्मृती व अखंड प्रेरणा स्थान",
     badge: "प्रेरणा स्थान",
   },
   {
-    id: "somnath-bhau-bomble",
+    id: "07_somnath_bhau_bombale",
     name: "सोमनाथ भाऊ बोंबले",
     role: "मंडळ संघटक",
-    photo: "/images/leadership/somnath-bhau-bomble.jpg",
+    image: "/images/people/leadership/07_somnath_bhau_bombale.png",
+    photo: "/images/people/leadership/07_somnath_bhau_bombale.png",
   },
   {
-    id: "sunil-shankh",
+    id: "08_sunil_shankh",
     name: "सुनील शंख",
     role: "मंडळ संघटक",
-    photo: "/images/leadership/sunil-shankh.jpg",
+    image: "/images/people/leadership/08_sunil_shankh.png",
+    photo: "/images/people/leadership/08_sunil_shankh.png",
   },
   {
-    id: "prakash-kadwade",
-    name: "प्रकाश काडवादे",
+    id: "09_prakash_kadwade",
+    name: "प्रकाश काडवदे",
     role: "मंडळ संघटक",
-    photo: "/images/leadership/prakash-kadwade.jpg",
+    image: "/images/people/leadership/09_prakash_kadwade.png",
+    photo: "/images/people/leadership/09_prakash_kadwade.png",
   },
   {
-    id: "nitin-kamble",
+    id: "10_nitin_kamble",
     name: "नितीन कांबळे",
     role: "मंडळ संपर्क प्रमुख",
-    photo: "/images/leadership/nitin-kamble.jpg",
+    image: "/images/people/leadership/10_nitin_kamble.png",
+    photo: "/images/people/leadership/10_nitin_kamble.png",
   },
   {
-    id: "datta-devkar",
+    id: "11_datta_devkar",
     name: "दत्ता देवकर",
     role: "मंडळ संपर्क प्रमुख",
-    photo: "/images/leadership/datta-devkar.jpg",
+    image: "/images/people/leadership/11_datta_devkar.png",
+    photo: "/images/people/leadership/11_datta_devkar.png",
   },
   {
-    id: "sushil-satdive-mangesh-thora",
-    name: "सुशील सातदिवे || मंगेश थोरा",
+    id: "12_sushil_satdive_mangesh_thorat",
+    names: ["सुशील सातदिवे", "मंगेश थोरात"],
     role: "मंडळ ढोल ताशा गट पथक प्रमुख",
-    photo: "/images/leadership/sushil-satdive-mangesh-thora.jpg",
+    image: "/images/people/leadership/12_sushil_satdive_mangesh_thorat.png",
+    photo: "/images/people/leadership/12_sushil_satdive_mangesh_thorat.png",
     badge: "ढोल ताशा पथक प्रमुख",
   },
 ];

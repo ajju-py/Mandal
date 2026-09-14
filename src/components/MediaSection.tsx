@@ -5,7 +5,7 @@ import { foundingArtifact, historicalPhotos, mandalVideos, instagramInfo } from 
 
 export default function MediaSection() {
   return (
-    <section id="media" className="py-16 sm:py-24 bg-white relative">
+    <section id="media" className="py-12 sm:py-16 bg-white relative scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">

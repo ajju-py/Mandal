@@ -53,7 +53,7 @@ export default function HeroSection() {
   }, [nextSlide]);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-orange-50/70 via-white to-orange-50/40 pt-6 pb-12 sm:py-16">
+    <section className="relative overflow-hidden bg-gradient-to-b from-orange-50/70 via-white to-orange-50/40 pt-4 pb-8 sm:py-12">
       {/* Subtle traditional background motifs */}
       <div className="absolute top-0 right-0 -mr-24 -mt-24 w-96 h-96 rounded-full bg-bhagwa-200/30 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 -ml-24 -mb-24 w-96 h-96 rounded-full bg-maroon-200/20 blur-3xl pointer-events-none" />
@@ -196,7 +196,7 @@ export default function HeroSection() {
         </div>
 
         {/* Highlights Bar below Hero */}
-        <div className="mt-10 sm:mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <div className="bg-white/90 border border-orange-100 rounded-xl p-4 shadow-sm flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-bhagwa-100 flex items-center justify-center text-bhagwa-600 shrink-0">
               <Calendar className="w-5 h-5" />

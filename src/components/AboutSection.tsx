@@ -22,9 +22,9 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="py-16 sm:py-24 bg-festive-cream relative">
+    <section id="about" className="py-12 sm:py-16 bg-festive-cream relative scroll-mt-24">
       {/* Decorative divider top */}
-      <div className="festival-divider max-w-5xl mx-auto mb-12 sm:mb-16" />
+      <div className="festival-divider max-w-5xl mx-auto mb-10 sm:mb-12" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -94,7 +94,7 @@ export default function AboutSection() {
                 <article
                   key={sec.id}
                   id={isDholTasha ? "about-dhol" : undefined}
-                  className={`rounded-2xl p-5 sm:p-6 transition-all duration-300 ${
+                  className={`rounded-2xl p-5 sm:p-6 transition-all duration-300 scroll-mt-28 ${
                     isDholTasha
                       ? "bg-gradient-to-br from-orange-50 via-white to-bhagwa-50/60 border-2 border-bhagwa-400 shadow-md relative overflow-hidden"
                       : "bg-white border border-orange-100/90 shadow-sm hover:shadow-md hover:border-bhagwa-300"
