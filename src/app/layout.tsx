@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/brand/logo.jpg",
+        url: "/images/branding/mandal-logo.png",
         width: 800,
         height: 800,
         alt: "धर्मवीर संभाजी क्रीडा मंडळ लोगो",
@@ -60,10 +60,13 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "धर्मवीर संभाजी क्रीडा मंडळ (भगवं वादळ)",
     description: "एन – ६ सिडको, ई सेक्टर, छत्रपती संभाजीनगर. स्थापना १९९१.",
-    images: ["/images/brand/logo.jpg"],
+    images: ["/images/branding/mandal-logo.png"],
   },
   icons: {
     icon: "/favicon.ico",
+  },
+  other: {
+    google: "notranslate",
   },
 };
 
@@ -73,7 +76,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="mr" className={`${yatraOne.variable} ${baloo2.variable}`}>
+    <html
+      lang="mr"
+      translate="no"
+      className={`notranslate ${yatraOne.variable} ${baloo2.variable}`}
+    >
       <body className="min-h-screen flex flex-col bg-[#FFFDF9] text-[#1C1917]">
         {children}
       </body>

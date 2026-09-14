@@ -18,13 +18,13 @@ export default function Footer() {
           {/* Col 1: Mandal Identity & Summary (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-bhagwa-400 bg-bhagwa-100 shrink-0">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-bhagwa-400 bg-bhagwa-100 shrink-0 flex items-center justify-center">
                 <Image
-                  src="/images/brand/logo.jpg"
+                  src="/images/branding/mandal-logo.png"
                   alt="धर्मवीर संभाजी क्रीडा मंडळ लोगो"
                   fill
                   sizes="48px"
-                  className="object-cover"
+                  className="object-contain p-0.5"
                 />
               </div>
               <div>

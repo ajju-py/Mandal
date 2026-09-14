@@ -20,6 +20,11 @@ function MentorCard({ mentor, index }: { mentor: MentorItem; index: number }) {
             fill
             sizes="(max-width: 640px) 80px, 96px"
             className="object-cover group-hover:scale-105 transition-transform duration-300"
+            style={{
+              objectPosition: mentor.objectPosition || "center 10%",
+              transform: `${mentor.scale && mentor.scale !== 1.0 ? `scale(${mentor.scale})` : ""} ${mentor.translateY ? `translateY(${mentor.translateY})` : ""}`.trim() || undefined,
+              transformOrigin: mentor.objectPosition || "center 20%",
+            }}
             onError={() => setImgError(true)}
           />
         ) : (

@@ -1,0 +1,331 @@
+================================================================================
+धर्मवीर संभाजी क्रीडा मंडळ (भगवं वादळ) — MASTER CONTEXT & BUILD HISTORY
+================================================================================
+File: prompt.txt
+Location: Root of workspace (c:/Users/Ajay/Downloads/Mandal/prompt.txt)
+Purpose: Single source of truth for AI agents & developers to understand the complete
+         architecture, history, data flow, rules, modifications, and future roadmap.
+NOTICE FOR FUTURE AI ASSISTANTS:
+1. ALWAYS read this file before modifying the codebase.
+2. ALWAYS append any new changes, features, bugfixes, or refactors to the
+   "CHRONOLOGICAL MODIFICATIONS & AUDIT HISTORY" section at the end of this file.
+================================================================================
+
+--------------------------------------------------------------------------------
+1. PROJECT OVERVIEW & IDENTITY
+--------------------------------------------------------------------------------
+- Mandal Name: धर्मवीर संभाजी क्रीडा मंडळ
+- Tagline / Sub-brand: भगवं वादळ
+- Nature: Prestigious 30+ year-old Ganeshotsav Mandal & Dhol-Tasha Troupe (पारंपरिक ढोल ताशा पथक)
+- Location: एन - ६ सिडको, ई सेक्टर, छत्रपती संभाजीनगर (Chhatrapati Sambhajinagar, Maharashtra)
+- Founded: 1991 (स्थापना: १९९१)
+- Official Social Channels:
+    * YouTube: https://youtube.com/@bhgvvadal (@bhgvvadal)
+    * Telegram: https://t.me/bhgvvadal (@bhgvvadal)
+    * Instagram: https://instagram.com/bhgv__vadal (@bhgv__vadal)
+- Origin & Mission:
+    Rebuilding and modernizing the mandal's legacy WordPress site:
+    https://dhrmveersambhajikridamandal.wordpress.com/ (Home)
+    https://dhrmveersambhajikridamandal.wordpress.com/gallery/ (Gallery)
+    into a state-of-the-art, lightning-fast, mobile-first static website deployable
+    on Vercel without any runtime database or CMS overhead.
+
+--------------------------------------------------------------------------------
+2. NON-NEGOTIABLE CORE PHILOSOPHY & AGENT GUIDELINES
+--------------------------------------------------------------------------------
+When interacting with or generating code for this repository, ANY AI MUST follow:
+
+1. AUTHENTIC MARATHI COPY (अस्सल मराठी मजकूर):
+   - All public-facing text must remain in pure Marathi / Devanagari script.
+   - Do NOT translate copy to English or replace cultural terminology with generic SaaS words.
+   - Use <html lang="mr" translate="no" className="notranslate"> to protect Marathi
+     proper nouns from being garbled by automated browser translation tools.
+
+2. TRUTHFUL DATA & ZERO FABRICATION:
+   - Do NOT fabricate or hallucinate names, bios, committee roles, or historical facts.
+   - For sections where names were not given in the original records (specifically
+     the 32 mentors in MentorsSection), keep them titled purely as "मार्गदर्शक" with
+     their real photographs. Do NOT invent fictional names.
+
+3. MEMORIAL RESPECT (कै. लक्ष्मण अण्णा थोरात):
+   - Founder / elder member Late Laxman Anna Thorat (कै. लक्ष्मण अण्णा थोरात) must always
+     be styled with highest reverence — warm memorial tribute badge, floral amber
+     border, and the note: "आदरणीय स्मृती व अखंड प्रेरणा स्थान".
+
+4. DUAL-NAME CARD 12:
+   - Card 12 of the leadership team represents two joint leaders:
+     सुशील सातदिवे (Sushil Satdive) and मंगेश थोरात (Mangesh Thorat).
+     They lead the Dhol Tasha Pathak together and are rendered with dual-heading
+     support ("सुशील सातदिवे || मंगेश थोरात").
+
+5. CULTURAL & FESTIVE DESIGN SYSTEM:
+   - Palette: Bhagwa/Saffron (#FF6F00 / #EA580C / #C2410C), deep Kumkum/Maroon (#800B22 / #9E1B32),
+     warm festive cream (#FFFDF9), and charcoal (#1C1917).
+   - Typography: Google Fonts `Yatra One` (festive display headings) and `Baloo 2` (clean body).
+   - NO generic blue-purple gradients, generic corporate stock art, or fintech UI clichés.
+
+6. MOBILE-FIRST ACCESSIBILITY:
+   - Minimum 44x44px tap targets for mobile usability.
+   - Smooth lazy loading and batch pagination on heavy media pages.
+
+7. PURE SSG (STATIC SITE GENERATION):
+   - No runtime databases, no authentication, no external API keys required.
+   - All content is decoupled cleanly into typed TypeScript files (`src/data/*.ts`).
+
+--------------------------------------------------------------------------------
+3. TECHNICAL STACK
+--------------------------------------------------------------------------------
+- Framework: Next.js 14.2.15 (App Router, Server Components + Client Islands)
+- Core: React 18.3.1, React DOM 18.3.1
+- Language: TypeScript 5.5.4 (Strict Mode enabled)
+- Styling: Tailwind CSS 3.4.14, PostCSS 8.4.47, Autoprefixer 10.4.20
+- Icons: Lucide React 0.453.0
+- Image Optimization: next/image with local image hosting
+- Hosting Target: Vercel (1-click deploy, 0 environment variables required)
+- Build Output: Fully prerendered static pages (First Load JS: ~87 kB)
+
+--------------------------------------------------------------------------------
+4. DIRECTORY ARCHITECTURE & RESPONSIBILITIES
+--------------------------------------------------------------------------------
+Mandal/
+├── public/
+│   ├── favicon.ico
+│   └── images/
+│       ├── brand/                  # Logo JPG (logo.jpg: ~230KB) and SVG fallbacks
+│       ├── branding/               # High-res emblem (mandal-logo.png: 2.6MB)
+│       ├── gallery-2023/           # 79 Ganeshotsav 2023 event photos
+│       ├── gallery-archive/        # 80 Historical archive photos
+│       ├── history/                # 1991 founding photo & 2022 Vadyapujan
+│       ├── leadership/             # Original downloaded leadership portraits
+│       ├── members/optimized/      # 12 Normalized 800x800 WebP portraits (~80KB each)
+│       ├── mentors/                # 32 Mentor photos (mentor-01.jpg .. mentor-32.jpg)
+│       └── people/                 # People image subsystem:
+│           ├── leadership/         # Cropped PNG/JPG leadership portraits (12 files)
+│           ├── special-cooperation/# 3 Special cooperation portraits
+│           └── mentors/            # (Target controlled directory)
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx              # Root HTML, fonts, metadata, OG tags, viewport
+│   │   ├── page.tsx                # Homepage assembling all 6 main sections
+│   │   ├── globals.css             # Base styles, festive utilities, custom scrollbar
+│   │   ├── icon.svg                # Dynamic SVG favicon with saffron flag
+│   │   └── gallery/
+│   │       └── page.tsx            # Full gallery page (/gallery)
+│   ├── components/
+│   │   ├── Navbar.tsx              # Sticky header, top ticker bar, mobile drawer, social links
+│   │   ├── HeroSection.tsx         # Left identity & badges + right 5-slide photo carousel
+│   │   ├── AboutSection.tsx        # 6 narrative blocks + sticky emblem card + contact notice
+│   │   ├── LeadershipSection.tsx   # 12 committee cards, memorial tribute, avatar framing
+│   │   ├── SpecialCooperationSection.tsx # 3 Special cooperation partner cards
+│   │   ├── MentorsSection.tsx      # Responsive grid of 32 mentor cards
+│   │   ├── MediaSection.tsx        # 1991 founding card, 2022 photo, 5 video embeds
+│   │   ├── GalleryView.tsx         # Tabbed filter (2K23 / Old / All), Load More (batch 24)
+│   │   ├── Lightbox.tsx            # Fullscreen modal, swipe/keyboard navigation (Esc, Arrows)
+│   │   └── Footer.tsx              # 3-column footer with social links & copyright
+│   └── data/
+│       ├── mandal.ts               # MandalInfo, navItems, address, social handles
+│       ├── about.ts                # 6 Marathi narrative text sections verbatim
+│       ├── team.ts                 # 12 leadership members + roles + objectPosition + scale
+│       ├── mentors.ts              # 3 special cooperation + 32 mentors list
+│       ├── media.ts                # Founding photo, 2022 photo, 5 video embeds (WordPress & YT)
+│       └── gallery.ts              # 159 photos categorized into "2k23" and "archive"
+└── scripts/
+    ├── download-images.mjs         # Scrapes & downloads WP images with curl + SVG fallbacks
+    ├── generate_optimized_portraits.py # PIL script normalizing 12 portraits to 800x800 WebP
+    ├── update_team_photos.py       # Crops and pads leadership photos to square
+    ├── test_css_grid.py            # Generates a visual audit grid of portrait croppings
+    ├── test_framing.py             # PIL portrait framing tester
+    └── verify_server.py            # Local HTTP test verification script
+
+--------------------------------------------------------------------------------
+5. DATA SCHEMAS & FIELD SPECIFICATIONS
+--------------------------------------------------------------------------------
+- `src/data/mandal.ts`:
+    * name: string
+    * tagline: string ("भगवं वादळ")
+    * establishedYear: number (1991)
+    * establishedMarathi: string ("१९९१")
+    * address: string
+    * social: { youtube, telegram, instagram }
+    * contact: { addressMarathi, instagramHandle, telegramHandle, youtubeHandle }
+    * navItems: Array<{ label, href, isExternal? }>
+
+- `src/data/team.ts`:
+    * id: string (e.g. "01_kalyan_aute", "06_laxman_anna_thorat")
+    * name?: string
+    * names?: string[] (used for Card 12 dual names)
+    * role: string (e.g. "मंडळ ट्रस्ट अध्यक्ष", "संस्थापक अध्यक्ष", "मंडळ सचिव")
+    * image: string (path to avatar)
+    * photo?: string
+    * isMemorial?: boolean (activates memorial tribute badge & amber frame)
+    * memorialNote?: string ("आदरणीय स्मृती व अखंड प्रेरणा स्थान")
+    * badge?: string
+    * objectPosition?: string (CSS object-position for fine-tuned avatar centering)
+    * scale?: number (CSS scale multiplier for head size balance)
+
+- `src/data/mentors.ts`:
+    * specialCooperationList: Array<MentorItem> (3 cards)
+    * mentorsList: Array<MentorItem> (32 cards, roleTitle: "मार्गदर्शक")
+
+- `src/data/media.ts`:
+    * foundingArtifact: HistoricalPhoto (1991 First Photo)
+    * historicalPhotos: Array<HistoricalPhoto> (2022 Vadyapujan)
+    * mandalVideos: Array<VideoEmbed> (2 WordPress video.wordpress.com + 3 YouTube embeds)
+    * instagramInfo: Social card details
+
+- `src/data/gallery.ts`:
+    * gallery2023List: 79 photos from Ganeshotsav 2023
+    * galleryArchiveList: 80 photos from older festival archives
+    * allGalleryPhotos: Array of 159 GalleryImage objects
+
+--------------------------------------------------------------------------------
+6. KNOWN GOTCHAS & ARCHITECTURAL SUBTLETIES
+--------------------------------------------------------------------------------
+1. MENTOR IMAGE PATH MISMATCH:
+   - In `public/images/mentors/`, files are named with hyphens:
+     `mentor-01.jpg` .. `mentor-32.jpg` (EXCEPT mentor 13 which is `mentor-13.webp`).
+   - If `src/data/mentors.ts` points to `/images/people/mentors/mentor_${num}.jpg`,
+     those images fail because `public/images/people/mentors/` is currently empty.
+   - Always ensure `mentors.ts` maps to the actual existing filenames.
+
+2. IMAGE FILE SIZE & RETINA OPTIMIZATION:
+   - `public/images/branding/mandal-logo.png` is 2.62 MB. For faster initial LCP,
+     consider using a compressed WebP derivative (<150KB).
+   - In `src/data/team.ts`, PNGs in `/images/people/leadership/` are ~1.9 MB each (~24MB total).
+     The script `scripts/generate_optimized_portraits.py` created 800x800 WebP portraits
+     under `public/images/members/optimized/` (~80 KB each). Switching to these saves ~95%
+     of page weight while maintaining crisp clarity.
+
+3. WORDPRESS EMBEDDED VIDEOS:
+   - Videos for 2023 & 2024 Vadyapujan are embedded from `video.wordpress.com`.
+   - If the free WordPress site is ever deleted, these embeds will fail.
+   - Ideal long-term fix: Re-upload to the mandal's YouTube channel (@bhgvvadal)
+     and update `src/data/media.ts` to standard YouTube embeds.
+
+4. NEXT IMAGE DOMAINS:
+   - `next.config.mjs` allows `dhrmveersambhajikridamandal.wordpress.com` under
+     `remotePatterns` for fallback remote loading if ever needed.
+
+--------------------------------------------------------------------------------
+7. CHRONOLOGICAL BUILD & MODIFICATION HISTORY
+--------------------------------------------------------------------------------
+
+[PHASE 1 - INITIAL ARCHITECTURE & SCAFFOLDING]
+Commit: 62863cc
+- Scraped WordPress site `dhrmveersambhajikridamandal.wordpress.com`.
+- Created automated image scraper `scripts/download-images.mjs` to fetch 200+ photos
+  and generate emergency fallback SVGs.
+- Scaffolded Next.js 14 App Router project with TypeScript and Tailwind CSS.
+- Configured Devanagari Google Fonts: `Yatra One` for headings, `Baloo 2` for body text.
+- Built all primary components: Navbar, HeroSection, AboutSection, LeadershipSection,
+  SpecialCooperationSection, MentorsSection, MediaSection, GalleryView, Lightbox, Footer.
+- Added `/gallery` route with tabbed filtering (2K23 vs. Archive) and 24-item batching.
+
+[PHASE 2 - LEADERSHIP PORTRAIT REFINEMENT]
+Commit: 776722b
+- Replaced lower-quality photos for 5 key leadership members:
+  * मनोज कुलकर्णी (Manoj Kulkarni)
+  * विजय तांदळे (Vijay Tandale)
+  * सोमनाथ भाऊ बोंबले (Somnath Bhau Bomble)
+  * कै. लक्ष्मण अण्णा थोरात (Late Laxman Anna Thorat)
+  * चंद्रकांत साळुंके (Chandrakant Salunke)
+- Created `scripts/update_team_photos.py` to auto-crop, center, pad with white borders,
+  and scale up portraits for retina sharpness.
+- Added `scripts/inspect_uploaded.py` to verify dimensions and aspect ratios.
+
+[PHASE 3 - CONTROLLED PEOPLE IMAGE SUBSYSTEM & CARD 12]
+Commit: 7641b92
+- Established controlled asset directory structure: `public/images/people/`.
+- Created `IMAGE_NAMING_GUIDE.md` and `ADD_PHOTOS_HERE.md` for team members.
+- Added dual-name heading support to `LeadershipSection.tsx` and `team.ts` for Card 12
+  (सुशील सातदिवे || मंगेश थोरात).
+- Implemented uniform card heights and graceful fallback states with camera icons
+  when images fail to load or are missing.
+- Fixed sticky navbar overlap by applying `scroll-mt-24` to all anchor target sections.
+- Tightened vertical whitespace and paddings across all homepage sections.
+
+[PHASE 4 - PORTRAIT NORMALIZATION & BRANDING INTEGRATION]
+Unstaged Working Changes / Recent Updates:
+- Created `scripts/generate_optimized_portraits.py`:
+  Processes all 12 leadership portraits with custom crop offsets and scales them
+  to 800x800 WebPs with face coverage between 55% and 65%.
+- Added fine-tuning properties `objectPosition` and `scale` to `TeamMember` interface
+  in `src/data/team.ts` to allow sub-pixel CSS framing adjustments.
+- Created `scripts/test_css_grid.py` and `scripts/test_framing.py` for headless visual
+  audit of portrait grids.
+- Updated mandal branding references across `Navbar.tsx`, `HeroSection.tsx`,
+  `AboutSection.tsx`, `Footer.tsx`, and `layout.tsx` to use the authoritative
+  high-res emblem `/images/branding/mandal-logo.png`.
+- Added `translate="no"` and `notranslate` attributes to Marathi text elements in
+  `layout.tsx` and `Navbar.tsx` to prevent Chrome's auto-translate from altering Marathi words.
+
+[PHASE 5 - COMPREHENSIVE PROJECT AUDIT]
+Date: September 2026
+- Conducted full project analysis across architecture, SEO, performance, and asset health.
+- Verified Next.js static production build succeeds with code 0 (108 kB First Load JS).
+- Documented findings in `project_analysis.md` (identifying mentors path mismatch,
+  asset payload optimization opportunities, and WordPress video dependencies).
+- Created `prompt.txt` as the persistent context repository for future AI sessions.
+
+[PHASE 6 - MENTORS PHOTOGRAPHS INTEGRATION & PATH FIX]
+Date: September 15, 2026
+- Verified addition of all 32 mentor photos into `public/images/people/mentors/`
+  (`mentor-01.jpg` through `mentor-32.jpg`).
+- Modified `src/data/mentors.ts`:
+  * Updated filename generator from underscore (`mentor_${num}.jpg`) to hyphen (`mentor-${num}.jpg`).
+  * Updated `id` to `mentor-${num}`.
+- Resolved all 404 GET errors on `/images/people/mentors/*` in dev server.
+- Build Verification: `npm run build` executed and passed cleanly with exit code 0.
+
+[PHASE 7 - HOMEPAGE HERO SLIDESHOW CONNECTED TO COMPLETE WEBSITE GALLERY]
+Date: September 15, 2026
+- Identified existing canonical gallery dataset: `allGalleryPhotos` in `src/data/gallery.ts` (158 festival & archive photos).
+- Modified `src/components/HeroSection.tsx`:
+  * Removed hardcoded 5-slide array (`heroSlides`).
+  * Connected slideshow directly to `allGalleryPhotos` from `@/data/gallery`.
+  * Implemented high-performance windowed rendering (`isNearCurrentSlide` with circular +/-2 distance buffer)
+    so only 5 image nodes exist in the DOM at any second, preventing memory leaks while retaining smooth 1000ms crossfade transitions.
+  * Implemented responsive 5-dot sliding indicator window centered around active slide, maintaining exact original button design, height, and positioning without overflowing or wrapping.
+  * Preserved full circular Previous/Next navigation and automatic 5.5s autoplay through the entire 158-photo gallery.
+  * Preserved Marathi caption overlays using authentic gallery metadata without inventing names or descriptions.
+- Build Verification: `npm run build` executed and passed cleanly with exit code 0.
+
+[PHASE 8 - COMPREHENSIVE PERSON/PROFILE IMAGE FRAMING AUDIT & PER-IMAGE CALIBRATION]
+Date: September 15, 2026
+- Complete code and visual audit of all person/profile image sections across the website:
+  1. Mentors (`MentorsSection.tsx` & `src/data/mentors.ts`):
+     - Added individual calibration (`objectPosition`, `scale`, `translateY`) for all 32 mentors.
+     - Addressed square portrait clipping (e.g. M06, M07) by applying vertical translation (`translateY: 5%`),
+       preventing circular borders from cutting into heads/hair and giving natural breathing room.
+     - Addressed vertical portrait alignment (6%-12% top offsets) ensuring foreheads, chins, and upper shoulders are visible.
+  2. Special Cooperation (`SpecialCooperationSection.tsx` & `src/data/mentors.ts`):
+     - Added per-item `objectPosition` and `scale` to preserve natural head framing in rounded-xl rectangular cards.
+  3. Leadership Team (`LeadershipSection.tsx` & `src/data/team.ts`):
+     - Verified all 12 committee portraits and preserved the dual-leader framing for Card 12.
+  4. Media Section (`MediaSection.tsx`):
+     - Updated 1991 founding group photo to `object-contain` on both mobile and desktop to prevent cropping any founding members.
+     - Updated 2022 Vadyapujan tall vertical photo to `object-contain` on dark stone background, preventing horizontal cropping.
+  5. Hero Slideshow (`HeroSection.tsx`):
+     - Added `objectPosition: "center 25%"` to keep heads and banners properly centered in festival procession shots.
+- Preserved existing circular and rectangular card frames, dimensions, borders, and layouts without alterations to people's faces.
+- Build Verification: `npm run build` executed and passed cleanly with exit code 0. Dev server active with 0 image 404s.
+
+--------------------------------------------------------------------------------
+8. INSTRUCTIONS FOR FUTURE AI SESSIONS & CODE MODIFICATIONS
+--------------------------------------------------------------------------------
+Whenever you are asked to make changes, build new features, or fix bugs in this repo:
+
+Step 1: Read this file (`prompt.txt`) to align with existing patterns and conventions.
+Step 2: Respect Marathi language purity, Devanagari typography, and Bhagwa palette.
+Step 3: Keep content in `src/data/*.ts` and presentation in `src/components/`.
+Step 4: Run `npm run build` after making changes to ensure static compilation succeeds.
+Step 5: APPEND a new phase entry below with:
+        - Date
+        - Exact files modified / created
+        - Summary of changes and rationale
+        - Build verification results
+
+================================================================================
+END OF MASTER CONTEXT
+================================================================================
+

@@ -34,9 +34,14 @@ export default function Navbar() {
       }`}
     >
       {/* Top festival banner bar */}
-      <div className="bhagwa-gradient text-white text-xs sm:text-sm py-1 px-4 text-center font-medium flex items-center justify-center gap-2">
+      <div
+        translate="no"
+        className="notranslate bhagwa-gradient text-white text-xs sm:text-sm py-1 px-4 text-center font-medium flex items-center justify-center gap-2"
+      >
         <span className="inline-block animate-pulse">🚩</span>
-        <span>स्थापना १९९१ · धर्मवीर संभाजी क्रीडा मंडळ (भगवं वादळ), एन – ६ सिडको, छत्रपती संभाजीनगर</span>
+        <span translate="no" className="notranslate">
+          स्थापना १९९१ · धर्मवीर संभाजी क्रीडा मंडळ (भगवं वादळ), एन - ६ सिडको, छत्रपती संभाजीनगर
+        </span>
         <span className="hidden sm:inline-block">🚩</span>
       </div>
 
@@ -44,13 +49,13 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Brand Logo & Name */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-bhagwa-500 shadow-md transition-transform group-hover:scale-105 bg-bhagwa-100">
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-bhagwa-500 shadow-md transition-transform group-hover:scale-105 bg-bhagwa-100 flex items-center justify-center">
               <Image
-                src="/images/brand/logo.jpg"
+                src="/images/branding/mandal-logo.png"
                 alt="धर्मवीर संभाजी क्रीडा मंडळ लोगो"
                 fill
                 sizes="56px"
-                className="object-cover"
+                className="object-contain p-0.5"
                 priority
               />
             </div>

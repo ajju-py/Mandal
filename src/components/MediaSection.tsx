@@ -33,7 +33,7 @@ export default function MediaSection() {
                     alt={foundingArtifact.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 60vw"
-                    className="object-contain sm:object-cover"
+                    className="object-contain p-1"
                   />
                   <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-maroon-700 text-white text-xs font-bold shadow-md flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-amber-300" />
@@ -80,17 +80,18 @@ export default function MediaSection() {
                 {historicalPhotos[0].year}
               </span>
             </div>
-            <div className="relative aspect-[16/10] rounded-xl overflow-hidden border-2 border-white shadow-md">
+            <div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-xl overflow-hidden border-2 border-white shadow-md bg-stone-950">
               <Image
                 src={historicalPhotos[0].photo}
                 alt={historicalPhotos[0].title}
                 fill
                 sizes="(max-width: 768px) 100vw, 768px"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </div>
         </div>
+
 
         {/* 3. Videos Grid (WordPress वद्यपूजन २०२३, २०२४ & YouTube Videos) */}
         <div className="mb-14 sm:mb-20">

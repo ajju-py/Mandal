@@ -44,6 +44,11 @@ function LeadershipCard({ member }: { member: TeamMember }) {
             fill
             sizes="(max-width: 640px) 144px, 160px"
             className="object-cover"
+            style={{
+              objectPosition: member.objectPosition || "center 10%",
+              transform: member.scale ? `scale(${member.scale})` : undefined,
+              transformOrigin: member.objectPosition || "center 20%",
+            }}
             onError={() => setImgError(true)}
           />
         ) : (

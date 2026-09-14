@@ -27,7 +27,7 @@ export const mandalData: MandalInfo = {
   shortName: "भगवं वादळ",
   establishedYear: 1991,
   establishedMarathi: "१९९१",
-  address: "एन – ६ सिडको, ई सेक्टर, छत्रपती संभाजीनगर",
+  address: "एन - ६ सिडको, ई सेक्टर, छत्रपती संभाजीनगर",
   city: "छत्रपती संभाजीनगर",
   description: "छत्रपती संभाजीनगरमधील मानाचा गणेशोत्सव आणि प्रख्यात ढोल ताशा पथक. अखंड भक्ती, परंपरा आणि सामाजिक ऐक्य.",
   social: {
@@ -36,7 +36,7 @@ export const mandalData: MandalInfo = {
     instagram: "https://instagram.com/bhgv__vadal",
   },
   contact: {
-    addressMarathi: "एन – ६ सिडको, ई सेक्टर, छत्रपती संभाजीनगर, महाराष्ट्र",
+    addressMarathi: "एन - ६ सिडको, ई सेक्टर, छत्रपती संभाजीनगर, महाराष्ट्र",
     instagramHandle: "@bhgv__vadal",
     telegramHandle: "@bhgvvadal",
     youtubeHandle: "@bhgvvadal",

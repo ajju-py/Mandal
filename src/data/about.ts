@@ -7,7 +7,7 @@ export interface AboutSectionItem {
 }
 
 export const aboutData = {
-  anchorImage: "/images/about/about-anchor.jpg",
+  anchorImage: "/images/branding/mandal-logo.png",
   badge: "परंपरा, निष्ठा आणि संस्कृती",
   mainHeading: "आमच्याबद्दल",
   sections: [

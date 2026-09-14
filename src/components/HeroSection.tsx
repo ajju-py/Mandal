@@ -5,45 +5,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, MapPin, Calendar, Flame, Music, ArrowRight } from "lucide-react";
 import { mandalData } from "@/data/mandal";
+import { allGalleryPhotos } from "@/data/gallery";
 
-const heroSlides = [
-  {
-    src: "/images/about/about-anchor.jpg",
-    title: "अखंड भक्ती आणि चैतन्य",
-    caption: "धर्मवीर संभाजी क्रीडा मंडळ (भगवं वादळ) गणेशोत्सव सोहळा",
-  },
-  {
-    src: "/images/gallery-2023/img-20230929-wa0159.jpg",
-    title: "भगवं वादळ ढोल ताशा पथक",
-    caption: "गगनभेदी नाद आणि तालबद्ध पारंपरिक वादन",
-  },
-  {
-    src: "/images/gallery-2023/img-20230928-wa0076.jpg",
-    title: "सिडको एन-६ चा मानाचा उत्सव",
-    caption: "सकल हिंदू समाजाचे ऐक्य व सांस्कृतिक समृद्धी",
-  },
-  {
-    src: "/images/gallery-2023/img-20230929-wa0149.jpg",
-    title: "उत्साही कार्यकर्ते व वादक",
-    caption: "अविरत सेवा आणि श्रीगणेशाची दिव्य उपस्थिती",
-  },
-  {
-    src: "/images/history/founding-1991-first-photo.jpg",
-    title: "१९९१ चा पहिला ऐतिहासिक फोटो",
-    caption: "तीन दशकांपूर्वी सुरू झालेला गौरवशाली प्रवास",
-  },
-];
+const VISIBLE_DOTS = 5;
+
+// Helper to determine if a slide index is near the active slide (within 2 steps, circular)
+function isNearCurrentSlide(idx: number, current: number, total: number): boolean {
+  if (total <= 5) return true;
+  const diff = Math.min(Math.abs(idx - current), total - Math.abs(idx - current));
+  return diff <= 2;
+}
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const totalSlides = allGalleryPhotos.length;
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-  }, []);
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  }, [totalSlides]);
 
   const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
-  }, []);
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  }, [totalSlides]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -126,39 +109,48 @@ export default function HeroSection() {
           {/* Right Column: Dynamic Event Photo Carousel */}
           <div className="lg:col-span-6">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-festive-paper group aspect-[4/3] sm:aspect-[16/10] w-full">
-              {/* Carousel Slides */}
-              {heroSlides.map((slide, idx) => (
-                <div
-                  key={slide.src}
-                  className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                    idx === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-                  }`}
-                >
-                  <Image
-                    src={slide.src}
-                    alt={slide.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                    priority={idx === 0}
-                  />
-                  {/* Subtle gradient vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  
-                  {/* Slide Overlay Text */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white z-20">
-                    <span className="inline-block px-2.5 py-0.5 rounded bg-bhagwa-600 text-white text-xs font-semibold mb-1">
-                      {idx + 1} / {heroSlides.length}
-                    </span>
-                    <h3 className="font-heading text-lg sm:text-2xl text-orange-200 drop-shadow">
-                      {slide.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-200 line-clamp-1 mt-0.5">
-                      {slide.caption}
-                    </p>
+              {/* Carousel Slides (Windowed rendering to maintain high performance with 150+ photos) */}
+              {allGalleryPhotos.map((slide, idx) => {
+                if (!isNearCurrentSlide(idx, currentSlide, totalSlides)) {
+                  return null;
+                }
+                const isCurrent = idx === currentSlide;
+                return (
+                  <div
+                    key={slide.id}
+                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                      isCurrent ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                    }`}
+                  >
+                    <Image
+                      src={slide.src}
+                      alt={slide.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                      style={{ objectPosition: "center 25%" }}
+                      priority={idx === 0 || isCurrent}
+                    />
+                    {/* Subtle gradient vignette */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    
+                    {/* Slide Overlay Text */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white z-20">
+                      <span className="inline-block px-2.5 py-0.5 rounded bg-bhagwa-600 text-white text-xs font-semibold mb-1">
+                        {idx + 1} / {totalSlides}
+                      </span>
+                      <h3 className="font-heading text-lg sm:text-2xl text-orange-200 drop-shadow">
+                        {slide.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-gray-200 line-clamp-1 mt-0.5">
+                        {slide.category === "2k23"
+                          ? "गणेशोत्सव सोहळा २०२३ · भगवं वादळ ढोल ताशा पथक"
+                          : "ऐतिहासिक आठवणी व जुना छायाचित्र संग्रह"}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
 
               {/* Carousel Navigation Buttons */}
               <button
@@ -176,24 +168,30 @@ export default function HeroSection() {
                 <ChevronRight className="w-6 h-6" />
               </button>
 
-              {/* Carousel Indicators */}
+              {/* Carousel Indicators (Sliding 5-dot window matching the original UI size and position) */}
               <div className="absolute bottom-3 right-4 z-30 flex items-center gap-1.5">
-                {heroSlides.map((_, dotIdx) => (
-                  <button
-                    key={dotIdx}
-                    onClick={() => setCurrentSlide(dotIdx)}
-                    aria-label={`छायाचित्र ${dotIdx + 1}`}
-                    className={`h-2 rounded-full transition-all min-w-[12px] ${
-                      dotIdx === currentSlide
-                        ? "w-6 bg-bhagwa-500"
-                        : "w-2 bg-white/60 hover:bg-white"
-                    }`}
-                  />
-                ))}
+                {Array.from({ length: Math.min(VISIBLE_DOTS, totalSlides) }, (_, i) => {
+                  const offset = i - Math.floor(VISIBLE_DOTS / 2);
+                  const dotIdx = (currentSlide + offset + totalSlides) % totalSlides;
+                  const isCurrent = dotIdx === currentSlide;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentSlide(dotIdx)}
+                      aria-label={`छायाचित्र ${dotIdx + 1}`}
+                      className={`h-2 rounded-full transition-all min-w-[12px] ${
+                        isCurrent
+                          ? "w-6 bg-bhagwa-500"
+                          : "w-2 bg-white/60 hover:bg-white"
+                      }`}
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>
         </div>
+
 
         {/* Highlights Bar below Hero */}
         <div className="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">

@@ -20,6 +20,11 @@ function SpecialCoopCard({ item, index }: { item: MentorItem; index: number }) {
             fill
             sizes="(max-width: 640px) 144px, 176px"
             className="object-cover"
+            style={{
+              objectPosition: item.objectPosition || "center 10%",
+              transform: item.scale && item.scale !== 1.0 ? `scale(${item.scale})` : undefined,
+              transformOrigin: item.objectPosition || "center 20%",
+            }}
             onError={() => setImgError(true)}
           />
         ) : (
