@@ -116,7 +116,13 @@ function LeadershipCard({ member }: { member: TeamMember }) {
   );
 }
 
-export default function LeadershipSection() {
+export default function LeadershipSection({
+  initialMembers = leadershipTeam,
+}: {
+  initialMembers?: TeamMember[];
+}) {
+  const members = initialMembers && initialMembers.length > 0 ? initialMembers : leadershipTeam;
+
   return (
     <section id="team" className="py-12 sm:py-16 bg-white relative scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -134,9 +140,9 @@ export default function LeadershipSection() {
           </p>
         </div>
 
-        {/* 12 Leadership Cards Grid */}
+        {/* Leadership Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 items-stretch">
-          {leadershipTeam.map((member) => (
+          {members.map((member) => (
             <LeadershipCard key={member.id} member={member} />
           ))}
         </div>

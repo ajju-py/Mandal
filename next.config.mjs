@@ -8,6 +8,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "dhrmveersambhajikridamandal.wordpress.com",
       },
+      {
+        protocol: "https",
+        hostname: "**.supabase.co",
+      },
     ],
   },
 };

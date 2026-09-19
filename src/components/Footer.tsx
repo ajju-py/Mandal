@@ -1,10 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Youtube, Send, Instagram, MapPin, Heart, Sparkles } from "lucide-react";
+import { Youtube, Send, Instagram, MapPin, Heart, Sparkles, Lock } from "lucide-react";
 import { mandalData, navItems } from "@/data/mandal";
 
-export default function Footer() {
+export default function Footer({
+  logoUrl = "/images/branding/mandal-logo.png",
+}: {
+  logoUrl?: string;
+}) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -20,7 +24,7 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-bhagwa-400 bg-bhagwa-100 shrink-0 flex items-center justify-center">
                 <Image
-                  src="/images/branding/mandal-logo.png"
+                  src={logoUrl}
                   alt="धर्मवीर संभाजी क्रीडा मंडळ लोगो"
                   fill
                   sizes="48px"
@@ -112,9 +116,20 @@ export default function Footer() {
 
         {/* Bottom copyright & credits */}
         <div className="mt-12 pt-6 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <p className="text-center sm:text-left">
-            © {currentYear} {mandalData.name}. सर्व हक्क राखीव.
-          </p>
+          <div className="flex items-center gap-2.5 flex-wrap justify-center sm:justify-start">
+            <p className="text-center sm:text-left">
+              © {currentYear} {mandalData.name}. सर्व हक्क राखीव.
+            </p>
+            <span className="text-gray-700">·</span>
+            <Link
+              href="/admin/login"
+              className="text-gray-600 hover:text-gray-400 transition-colors flex items-center gap-1 text-[11px]"
+              title="प्रशासक लॉगिन (Admin Login)"
+            >
+              <Lock className="w-3 h-3 opacity-60" />
+              <span>प्रशासक</span>
+            </Link>
+          </div>
 
           <p className="text-center sm:text-right flex items-center gap-1">
             <span>भक्ती आणि निष्ठेने समर्पित</span>

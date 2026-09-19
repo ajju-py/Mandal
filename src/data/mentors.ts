@@ -34,6 +34,14 @@ export const specialCooperationList: MentorItem[] = [
     objectPosition: "center 10%",
     scale: 1.0,
   },
+  {
+    id: "special_cooperation_04",
+    image: "/images/people/special-cooperation/special_cooperation_04.png",
+    photo: "/images/people/special-cooperation/special_cooperation_04.png",
+    roleTitle: "विशेष सहकार्य",
+    objectPosition: "center 10%",
+    scale: 1.0,
+  },
 ];
 
 interface MentorFraming {

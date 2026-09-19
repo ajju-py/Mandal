@@ -4,7 +4,10 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GalleryView from "@/components/GalleryView";
-import { ChevronLeft, Sparkles, Image as ImageIcon } from "lucide-react";
+import { ChevronLeft, Image as ImageIcon } from "lucide-react";
+import { fetchGalleryPhotos, fetchSiteBranding } from "@/lib/content";
+
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "छायाचित्र गॅलरी | धर्मवीर संभाजी क्रीडा मंडळ (भगवं वादळ)",
@@ -12,13 +15,17 @@ export const metadata: Metadata = {
     "धर्मवीर संभाजी क्रीडा मंडळाच्या २०२३ गणेशोत्सव आणि जुन्या संग्रहित छायाचित्रांचे भव्य दालन. १३०+ ऐतिहासिक छायाचित्रे आणि ढोल ताशा पथकाचे क्षण.",
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const [galleryData, branding] = await Promise.all([
+    fetchGalleryPhotos(),
+    fetchSiteBranding(),
+  ]);
+
   return (
     <>
-      <Navbar />
+      <Navbar logoUrl={branding.logoUrl} />
       <main className="flex-grow bg-festive-cream/60 py-10 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
           {/* Back to Home & Breadcrumb */}
           <div className="mb-6">
             <Link
@@ -46,11 +53,11 @@ export default function GalleryPage() {
             </p>
           </div>
 
-          {/* Main Gallery Component with Tabs, Pagination, and Lightbox */}
-          <GalleryView />
+          {/* Main Gallery Component with dynamic data */}
+          <GalleryView initialData={galleryData} />
         </div>
       </main>
-      <Footer />
+      <Footer logoUrl={branding.logoUrl} />
     </>
   );
 }

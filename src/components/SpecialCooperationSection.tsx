@@ -44,7 +44,13 @@ function SpecialCoopCard({ item, index }: { item: MentorItem; index: number }) {
   );
 }
 
-export default function SpecialCooperationSection() {
+export default function SpecialCooperationSection({
+  initialItems = specialCooperationList,
+}: {
+  initialItems?: MentorItem[];
+}) {
+  const items = initialItems && initialItems.length > 0 ? initialItems : specialCooperationList;
+
   return (
     <section className="py-10 sm:py-14 bg-gradient-to-b from-white via-orange-50/30 to-white scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,9 +68,9 @@ export default function SpecialCooperationSection() {
           </p>
         </div>
 
-        {/* 3 Photos Strip */}
+        {/* Photos Strip */}
         <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-8 max-w-4xl mx-auto">
-          {specialCooperationList.map((item, idx) => (
+          {items.map((item, idx) => (
             <SpecialCoopCard key={item.id} item={item} index={idx} />
           ))}
         </div>

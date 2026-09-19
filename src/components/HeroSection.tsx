@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, MapPin, Calendar, Flame, Music, ArrowRight } from "lucide-react";
 import { mandalData } from "@/data/mandal";
-import { allGalleryPhotos } from "@/data/gallery";
+import { allGalleryPhotos, GalleryImage } from "@/data/gallery";
 
 const VISIBLE_DOTS = 5;
 
@@ -16,9 +16,14 @@ function isNearCurrentSlide(idx: number, current: number, total: number): boolea
   return diff <= 2;
 }
 
-export default function HeroSection() {
+export default function HeroSection({
+  initialSlides = allGalleryPhotos,
+}: {
+  initialSlides?: GalleryImage[];
+}) {
+  const slides = initialSlides && initialSlides.length > 0 ? initialSlides : allGalleryPhotos;
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = allGalleryPhotos.length;
+  const totalSlides = slides.length;
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -110,7 +115,7 @@ export default function HeroSection() {
           <div className="lg:col-span-6">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-festive-paper group aspect-[4/3] sm:aspect-[16/10] w-full">
               {/* Carousel Slides (Windowed rendering to maintain high performance with 150+ photos) */}
-              {allGalleryPhotos.map((slide, idx) => {
+              {slides.map((slide, idx) => {
                 if (!isNearCurrentSlide(idx, currentSlide, totalSlides)) {
                   return null;
                 }

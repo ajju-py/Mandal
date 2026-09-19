@@ -7,7 +7,11 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Youtube, Send, Instagram, ChevronRight, Sparkles } from "lucide-react";
 import { mandalData, navItems } from "@/data/mandal";
 
-export default function Navbar() {
+export default function Navbar({
+  logoUrl = "/images/branding/mandal-logo.png",
+}: {
+  logoUrl?: string;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -51,7 +55,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-bhagwa-500 shadow-md transition-transform group-hover:scale-105 bg-bhagwa-100 flex items-center justify-center">
               <Image
-                src="/images/branding/mandal-logo.png"
+                src={logoUrl}
                 alt="धर्मवीर संभाजी क्रीडा मंडळ लोगो"
                 fill
                 sizes="56px"

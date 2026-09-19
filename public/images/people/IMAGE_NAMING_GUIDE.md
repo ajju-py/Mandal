@@ -37,6 +37,7 @@
 | `special_cooperation_01.jpg` | विशेष सहकार्य | नाव निश्चित नाही (No name assigned) |
 | `special_cooperation_02.jpg` | विशेष सहकार्य | नाव निश्चित नाही (No name assigned) |
 | `special_cooperation_03.jpg` | विशेष सहकार्य | नाव निश्चित नाही (No name assigned) |
+| `special_cooperation_04.png` | विशेष सहकार्य | नाव निश्चित नाही (No name assigned) |
 
 ---
 

@@ -7,9 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "download:images": "node scripts/download-images.mjs"
+    "download:images": "node scripts/download-images.mjs",
+    "db:seed": "node scripts/seed-supabase.mjs"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.116.0",
     "lucide-react": "^0.453.0",
     "next": "14.2.15",
     "react": "^18.3.1",

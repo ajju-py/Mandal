@@ -9,17 +9,35 @@ import MentorsSection from "@/components/MentorsSection";
 import MediaSection from "@/components/MediaSection";
 import Footer from "@/components/Footer";
 import { Sparkles, ArrowRight } from "lucide-react";
+import {
+  fetchSlideshowPhotos,
+  fetchLeadershipMembers,
+  fetchMentors,
+  fetchSpecialCooperation,
+  fetchSiteBranding,
+} from "@/lib/content";
 
-export default function HomePage() {
+// Revalidate on-demand or every 30 seconds to show CMS updates immediately
+export const revalidate = 0;
+
+export default async function HomePage() {
+  const [slides, members, mentors, cooperation, branding] = await Promise.all([
+    fetchSlideshowPhotos(),
+    fetchLeadershipMembers(),
+    fetchMentors(),
+    fetchSpecialCooperation(),
+    fetchSiteBranding(),
+  ]);
+
   return (
     <>
-      <Navbar />
+      <Navbar logoUrl={branding.logoUrl} />
       <main className="flex-grow">
-        <HeroSection />
+        <HeroSection initialSlides={slides} />
         <AboutSection />
-        <LeadershipSection />
-        <SpecialCooperationSection />
-        <MentorsSection />
+        <LeadershipSection initialMembers={members} />
+        <SpecialCooperationSection initialItems={cooperation} />
+        <MentorsSection initialMentors={mentors} />
         <MediaSection />
 
         {/* Gallery CTA Banner before Footer */}
@@ -48,7 +66,7 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer logoUrl={branding.logoUrl} />
     </>
   );
 }

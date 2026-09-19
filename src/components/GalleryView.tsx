@@ -8,17 +8,29 @@ import Lightbox from "./Lightbox";
 
 const BATCH_SIZE = 24;
 
-export default function GalleryView() {
+interface GalleryViewProps {
+  initialData?: {
+    all: GalleryImage[];
+    photos2023: GalleryImage[];
+    archivePhotos: GalleryImage[];
+  };
+}
+
+export default function GalleryView({ initialData }: GalleryViewProps) {
+  const photos2023 = initialData?.photos2023 ?? gallery2023List;
+  const archivePhotos = initialData?.archivePhotos ?? galleryArchiveList;
+  const allPhotos = initialData?.all ?? [...gallery2023List, ...galleryArchiveList];
+
   const [activeTab, setActiveTab] = useState<"all" | "2k23" | "archive">("2k23");
   const [visibleCount, setVisibleCount] = useState<number>(BATCH_SIZE);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // Active images list based on tab
   const activeImages = useMemo(() => {
-    if (activeTab === "2k23") return gallery2023List;
-    if (activeTab === "archive") return galleryArchiveList;
-    return [...gallery2023List, ...galleryArchiveList];
-  }, [activeTab]);
+    if (activeTab === "2k23") return photos2023;
+    if (activeTab === "archive") return archivePhotos;
+    return allPhotos;
+  }, [activeTab, photos2023, archivePhotos, allPhotos]);
 
   // Reset pagination when changing tabs
   const handleTabChange = (tab: "all" | "2k23" | "archive") => {
@@ -49,7 +61,7 @@ export default function GalleryView() {
           }`}
         >
           <Sparkles className="w-4 h-4" />
-          <span>2K23 PHOTO&apos;S ({gallery2023List.length})</span>
+          <span>2K23 PHOTO&apos;S ({photos2023.length})</span>
         </button>
 
         <button
@@ -61,7 +73,7 @@ export default function GalleryView() {
           }`}
         >
           <Calendar className="w-4 h-4" />
-          <span>Old Photo&apos;s ({galleryArchiveList.length})</span>
+          <span>Old Photo&apos;s ({archivePhotos.length})</span>
         </button>
 
         <button
@@ -73,7 +85,7 @@ export default function GalleryView() {
           }`}
         >
           <Layers className="w-4 h-4" />
-          <span>सर्व छायाचित्रे ({gallery2023List.length + galleryArchiveList.length})</span>
+          <span>सर्व छायाचित्रे ({allPhotos.length})</span>
         </button>
       </div>
 

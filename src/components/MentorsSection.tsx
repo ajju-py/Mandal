@@ -43,7 +43,13 @@ function MentorCard({ mentor, index }: { mentor: MentorItem; index: number }) {
   );
 }
 
-export default function MentorsSection() {
+export default function MentorsSection({
+  initialMentors = mentorsList,
+}: {
+  initialMentors?: MentorItem[];
+}) {
+  const mentors = initialMentors && initialMentors.length > 0 ? initialMentors : mentorsList;
+
   return (
     <section id="mentors" className="py-12 sm:py-16 bg-festive-cream/80 relative scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,7 +69,7 @@ export default function MentorsSection() {
 
         {/* Mentors Responsive Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 items-stretch">
-          {mentorsList.map((mentor, index) => (
+          {mentors.map((mentor, index) => (
             <MentorCard key={mentor.id} mentor={mentor} index={index} />
           ))}
         </div>

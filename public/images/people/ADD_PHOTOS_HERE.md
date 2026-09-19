@@ -37,6 +37,7 @@ Save the photographs in `public/images/people/special-cooperation/`:
 - `special_cooperation_01.jpg`
 - `special_cooperation_02.jpg`
 - `special_cooperation_03.jpg`
+- `special_cooperation_04.png`
 
 *(Note: Do not assign names to these cards. They are labeled "विशेष सहकार्य" only.)*
 
