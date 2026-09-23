@@ -85,13 +85,15 @@ const mentorFramingConfig: Record<number, MentorFraming> = {
   30: { objectPosition: "52% 12%", scale: 1.0 },
   31: { objectPosition: "50% 9%",  scale: 1.0, translateY: "2%" },
   32: { objectPosition: "50% 8%",  scale: 1.0, translateY: "2%" },
+  33: { objectPosition: "50% 10%" },
 };
 
-// Authoritative list of 32 mentors under /images/people/mentors/
-export const mentorsList: MentorItem[] = Array.from({ length: 32 }, (_, i) => {
+// Authoritative list of 33 mentors under /images/people/mentors/
+export const mentorsList: MentorItem[] = Array.from({ length: 33 }, (_, i) => {
   const numIndex = i + 1;
   const num = String(numIndex).padStart(2, "0");
-  const filename = `mentor-${num}.jpg`;
+  const ext = numIndex === 14 ? "png" : "jpg";
+  const filename = `mentor-${num}.${ext}`;
   const framing = mentorFramingConfig[numIndex] || { objectPosition: "center 10%" };
 
   return {
